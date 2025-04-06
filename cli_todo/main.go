@@ -8,7 +8,7 @@ import (
 
 type Task struct {
 	ID     string `json:"id"`
-	text   string `json:"text"`
+	Text   string `json:"text"`
 	Status bool   `json:"status"`
 }
 
@@ -27,8 +27,17 @@ func main() {
 	case "add":
 		addCmd.Parse(os.Args[2:])
 		fmt.Println("Adding a task", *addCmd)
+		exTask := Task{
+			ID:     "1",
+			Text:   "Learn Go",
+			Status: false,
+		}
+		fmt.Println("Task Added:", exTask)
 	case "list":
 		fmt.Println("Listing tasks")
+	default:
+		fmt.Println("Unrecognized command")
+		os.Exit(1) 
 	}
 
 }

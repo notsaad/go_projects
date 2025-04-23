@@ -40,4 +40,15 @@ func main() {
 		os.Exit(1) 
 	}
 
+	// 0644 is the permission of the file
+	f, err := os.OpenFile("test.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+
+	// calls f.Close() when the main function returns
+	defer f.Close()
+
+	f.WriteString("hello world\n")
+
 }
